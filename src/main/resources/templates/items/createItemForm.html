@@ -4,11 +4,13 @@
 <body>
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
-    <form th:action="@{/items/new}" th:object="${form}" method="post">
+    <form th:action="@{/items/new}" th:object="${bookForm}" method="post">
         <div class="form-group">
             <label th:for="name">상품명</label>
-            <input type="text" th:field="*{name}" class="form-control"
-                   placeholder="이름을 입력하세요">
+            <input type="text" th:field="*{name}"
+                   placeholder="이름을 입력하세요"
+                   th:class="${#fields.hasErrors('name')}? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Incorrect date</p>
         </div>
         <div class="form-group">
             <label th:for="price">가격</label>
@@ -17,8 +19,10 @@
         </div>
         <div class="form-group">
             <label th:for="stockQuantity">수량</label>
-            <input type="number" th:field="*{stockQuantity}" class="form-control"
-                   placeholder="수량을 입력하세요">
+            <input type="number" th:field="*{stockQuantity}"
+                   placeholder="수량을 입력하세요"
+                   th:class="${#fields.hasErrors('stockQuantity')}? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('stockQuantity')}" th:errors="*{stockQuantity}">Incorrect stockQuantity</p>
         </div>
         <div class="form-group">
             <label th:for="author">저자</label>
