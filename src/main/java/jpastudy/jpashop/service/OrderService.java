@@ -22,10 +22,10 @@ public class OrderService {
 
     /**
      * 주문 생성 처리
-     * @param memberId
-     * @param itemId
-     * @param count
-     * @return
+     * @param memberId 회원 ID
+     * @param itemId 상품ID
+     * @param count 주문수량
+     * @return 주문 ID
      */
     @Transactional
     // DB에 저장처리하기 때문 트랜잭션 적어~
@@ -48,7 +48,7 @@ public class OrderService {
 
     /**
      * 주문 취소
-     * @param orderId
+     * @param orderId 주문 ID
      */
     @Transactional
     public void cancelOrder(Long orderId) {
