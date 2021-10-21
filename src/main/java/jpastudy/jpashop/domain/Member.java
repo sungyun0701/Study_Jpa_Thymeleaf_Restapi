@@ -1,5 +1,6 @@
 package jpastudy.jpashop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,11 +15,13 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
 
+//    @NotEmpty 검증을 위한 어노테이션은 사용하지 않아야 함
     private String name;
 
     @Embedded
     private Address address;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 }

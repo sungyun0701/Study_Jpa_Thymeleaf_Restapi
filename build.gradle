@@ -33,6 +33,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.projectlombok:lombok:1.18.20'
+	implementation 'org.projectlombok:lombok:1.18.20'
+	implementation 'org.projectlombok:lombok:1.18.20'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
@@ -44,6 +47,8 @@ dependencies {
 	//querydsl 추가
 	implementation 'com.querydsl:querydsl-apt'
 
+	// Hibernate5Module 라이브러리 설치 및 Bean 등록
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5'
 }
 
 test {
