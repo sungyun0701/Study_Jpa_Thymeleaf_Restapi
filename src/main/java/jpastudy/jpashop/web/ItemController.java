@@ -58,30 +58,36 @@ public class ItemController {
     @GetMapping(value = "/items/{itemId}/edit")
     public String updateItemForm(@PathVariable("itemId") Long itemId, Model model) {
         Book item = (Book) itemService.findOne(itemId);
-        BookForm form = new BookForm();
-        form.setId(item.getId());
-        form.setName(item.getName());
-        form.setPrice(item.getPrice());
-        form.setStockQuantity(item.getStockQuantity());
-        form.setAuthor(item.getAuthor());
-        form.setIsbn(item.getIsbn());
-        model.addAttribute("form", form);
+        BookForm bookForm = new BookForm();
+        bookForm.setId(item.getId());
+        bookForm.setName(item.getName());
+        bookForm.setPrice(item.getPrice());
+        bookForm.setStockQuantity(item.getStockQuantity());
+        bookForm.setAuthor(item.getAuthor());
+        bookForm.setIsbn(item.getIsbn());
+        model.addAttribute("bookForm", bookForm);
         return "items/updateItemForm";
     }
 
     /**
      * 상품 수정
      */
+//    @PostMapping(value = "/items/{itemId}/edit")
+//    public String updateItem(@ModelAttribute("bookForm") BookForm form) {
+//        Book book = new Book();
+//        book.setId(form.getId());
+//        book.setName(form.getName());
+//        book.setPrice(form.getPrice());
+//        book.setStockQuantity(form.getStockQuantity());
+//        book.setAuthor(form.getAuthor());
+//        book.setIsbn(form.getIsbn());
+//        itemService.saveItem(book);
+//        return "redirect:/items";
+//    }
+    // DirtyChecking 부분적 수정
     @PostMapping(value = "/items/{itemId}/edit")
-    public String updateItem(@ModelAttribute("form") BookForm form) {
-        Book book = new Book();
-        book.setId(form.getId());
-        book.setName(form.getName());
-        book.setPrice(form.getPrice());
-        book.setStockQuantity(form.getStockQuantity());
-        book.setAuthor(form.getAuthor());
-        book.setIsbn(form.getIsbn());
-        itemService.saveItem(book);
+    public String updateItemDirtyChecking(@ModelAttribute("bookForm") BookForm form) {
+        itemService.updateItem(form.getId(), form.getName(), form.getPrice());
         return "redirect:/items";
     }
 }
