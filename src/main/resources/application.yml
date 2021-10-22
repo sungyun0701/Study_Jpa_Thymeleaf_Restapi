@@ -10,9 +10,9 @@ spring: #띄어쓰기 없음
       ddl-auto: create #띄어쓰기 6칸
     properties: #띄어쓰기 4칸
       hibernate: #띄어쓰기 6칸
-#        show_sql: true #띄어쓰기 8칸
-#        format_sql: true #띄어쓰기 8칸
-#        밑에 있는  org.hibernate.sql: debug 를 쓴다.
+        show_sql: true #띄어쓰기 8칸
+        format_sql: true #띄어쓰기 8칸
+
         #ToMany 관계인 엔티티 객체를 조회할떼  IN구문의 파라미터 갯수
         default_batch_fetch_size: 1000 #100~1000사이 권장
 
