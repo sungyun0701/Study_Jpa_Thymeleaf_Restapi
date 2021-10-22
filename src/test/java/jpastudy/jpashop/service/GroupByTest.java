@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class GroupByTest {
@@ -12,7 +13,7 @@ public class GroupByTest {
         List<Dish> dishList = Arrays.asList(new Dish("pork", 700, Type.NEAT),
                 new Dish("spagetti", 550, Type.NOODLE),
                 new Dish("tomato", 200, Type.VEGE),
-                new Dish("onion", 150, Type.VEGE);
+                new Dish("onion", 150, Type.VEGE));
         //Dish의 이름만 출력하기
         List<String> nameList = dishList.stream()//Stream<Dish>
                 .map(Dish::getName)//Stream<String>
@@ -23,7 +24,21 @@ public class GroupByTest {
                 .map(dish -> dish.getName())
                 .collect(Collectors.joining(","));
         System.out.println(nameStrs);
+        //Dish 칼로리 합계, 평균
+        Integer totalCalory = dishList.stream()
+                .collect(Collectors.summingInt(dish -> dish.getCalory()));
+        System.out.println(totalCalory);
+        Double averDish = dishList.stream()
+                .collect(Collectors.averagingInt(dish -> dish.getCalory()));
+        System.out.println(averDish);
+        //Dish의 Type별로 그룹핑하기
+        Map<Type, List<Dish>> dishesByType = dishList.stream()
+                .collect(Collectors.groupingBy(dish -> dish.getType()));
+        System.out.println(dishesByType);
+
+
     }
+
     static class Dish {
         String name;
         int calory;
@@ -45,6 +60,13 @@ public class GroupByTest {
 
         public Type getType() {
             return type;
+        }
+
+        @Override
+        public String toString() {
+            return "Dish{" +
+                    "name='" + name + '\'' +
+                    '}';
         }
     }
 
