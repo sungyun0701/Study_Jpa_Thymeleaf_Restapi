@@ -96,6 +96,14 @@ public class OrderApiController {
         return orderQueryRepository.findOrdersQueryDtos();
     }
 
+    /**
+     * V5 : 쿼리를 수행할 때 DTO에 저장했기 때문에 그대로 사용하면 됨
+     * 쿼리 횟수를 줄이기 위해 스트림의 GroupBy 기능 사용한 메서드 호출
+     */
+    @GetMapping("/api/v5/orders")
+    public List<OrderQueryDto> ordersV5() {
+        return  orderQueryRepository.findOrdersQueryDtos_optimize_before();
+    }
 
 
     //    응답과 요청에 사용할 DTO Inner Class 선언
